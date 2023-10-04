@@ -1,5 +1,6 @@
 from assertpy import assert_that
-from hello_poetry.hello import NO_INPUT_MESSAGE, make_big_letter, message, rpn
+from hello_poetry.hello import NO_INPUT_MESSAGE, Person, make_big_letter, message, rpn
+from hello_poetry.hello import message_with_age
 
 
 def test_message_should_return_hello():
@@ -46,6 +47,23 @@ def test_rpn_should_return_result_of_multiplication_with_two_single_digit_operan
     input = '3 5 *'
     expected = 15
     actual = rpn(input)
+    assert_that(actual).is_equal_to(expected)
+
+
+def test_rpn_should_return_result_of_division_with_two_single_digit_operands():
+    input = '2 4 /'
+    expected = 0.5
+    actual = rpn(input)
+    assert_that(actual).is_equal_to(expected)
+
+
+def test_should_display_greeting_with_full_name_and_age():
+    name ='Orestis'
+    surname= 'Gkorgkas'
+    yob = 1984
+    person = Person(name,surname,yob)
+    expected = "Hello Orestis Gkorgkas, you are 39 years old"
+    actual = message_with_age(person)
     assert_that(actual).is_equal_to(expected)
 
 
